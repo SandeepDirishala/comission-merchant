@@ -1,32 +1,39 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Name of Farmer" [(ngModel)]="person.name" name="name">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Village" [(ngModel)]="person.village" name="village">
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Number of Lots" (change)="generateLots()" [(ngModel)]="person.lots" name="lots"
-           type="number">
-  </mat-form-field>
-  <span *ngFor="let bag of bags; let k=index">
+<mat-card>
+  <mat-card-content>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Name of Farmer" [(ngModel)]="person.name" name="name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Village" [(ngModel)]="person.village" name="village">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Number of Lots" (change)="generateLots()" [(ngModel)]="person.lots" name="lots"
+               type="number">
+      </mat-form-field>
+      <span *ngFor="let bag of bags; let k=index">
     <mat-form-field class="example-full-width">
     <input matInput placeholder="Number of bags in lot {{k+1}}" [(ngModel)]="bagsList[k]" name="bags{{k+1}}"
            type="number">
   </mat-form-field>
   </span>
 
-  <button mat-button (click)="createBagsArr()">Submit</button>
-  <button mat-button (click)="cal()">Cal</button>
-  <span *ngFor="let lot of lotsOfBags; let j = index">
+      <button mat-button (click)="createBagsArr()">Submit</button>
+      <button mat-button (click)="cal()">Cal</button>
 
-  <span *ngFor="let bag of lot; let i = index">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Weight of bag {{j+1+''+i+1}}" [(ngModel)]="bagWieghts[j][i]"
-           name="{{'bag'+j+1+''+i+1}}" type="number">
-  </mat-form-field>
-    </span>
-</span>
+      <mat-card *ngFor="let lot of lotsOfBags; let j = index">
+        <p>Lot no. {{j + 1}}</p>
+
+        <mat-card-content *ngFor="let bag of lot; let i = index">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Weight of bag {{i+1}}" [(ngModel)]="bagWieghts[j][i]"
+                   name="{{'bag'+j+1+''+i+1}}" type="number">
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
 
-</form>
+    </form>
+
+  </mat-card-content>
+</mat-card>

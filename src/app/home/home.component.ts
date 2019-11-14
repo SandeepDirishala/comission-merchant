@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   createBagsArr() {
-    console.log(this.lotsOfBags, this.person.bagsList);
+    console.log(this.lotsOfBags);
 
     this.bagsList.forEach((k, j) => {
       console.log(this.bagsList);
