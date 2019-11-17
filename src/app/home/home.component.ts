@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
       this.listOfLotPricing.push(listofLotPrcingItem);
       console.log(listofLotPrcingItem);
     });
+    console.log(this.listOfLotPricing.map(a => a.total).reduce((a, b) => a + b));
   }
 
 }
