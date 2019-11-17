@@ -7,7 +7,7 @@ import {HomeComponent} from './home/home.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatRippleModule} from "@angular/material";
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatRippleModule,MatTableModule} from "@angular/material";
 import {FormsModule} from "@angular/forms";
 
 const modules = [
@@ -15,7 +15,8 @@ const modules = [
   MatFormFieldModule,
   MatInputModule,
   MatRippleModule,
-  MatCardModule
+  MatCardModule,
+  MatTableModule
 ];
 
 @NgModule({

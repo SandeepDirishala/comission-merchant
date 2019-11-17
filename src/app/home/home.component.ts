@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Person} from "../person";
+import {Person} from '../person';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   public lotsOfBags: any[] = [];
   public bagWieghts: any[] = [];
   public bagsList: any[] = [];
+  public listOfLotPricing: any[] = [];
+  displayedColumns: string[] = ['bags', 'weight', 'price', 'total'];
 
   constructor() {
   }
@@ -23,23 +25,32 @@ export class HomeComponent implements OnInit {
 
   generateLots() {
     this.bags = Array(this.person.lots).fill(0).map((x, i) => i);
+    this.bagsList = Array(this.person.lots).fill(0).map((x, i) => [{size: null, price: null}]);
+
   }
 
   createBagsArr() {
     console.log(this.lotsOfBags);
 
     this.bagsList.forEach((k, j) => {
-      console.log(this.bagsList);
-      this.lotsOfBags[j] = Array(k).fill(0).map((x, i) => i);
-      this.bagWieghts[j] = Array(k).fill(0).map((x, i) => []);
-      console.log(k, j, this.bagWieghts);
-
+      this.lotsOfBags[j] = Array(k.size).fill(0).map((x, i) => i);
+      this.bagWieghts[j] = Array(k.size).fill(0).map((x, i) => []);
     });
 
   }
 
   cal() {
-    console.log(this.bagWieghts.reduce((a, b) => a + b));
+    this.bagWieghts.forEach((weights, i) => {
+      const weightsSum = (weights.reduce((a, b) => a + b)) / 100;
+      const listofLotPrcingItem = {
+        bags: this.bagsList[i].size,
+        weight: weightsSum,
+        price: this.bagsList[i].price,
+        total: weightsSum * this.bagsList[i].price
+      };
+      this.listOfLotPricing.push(listofLotPrcingItem);
+      console.log(listofLotPrcingItem);
+    });
   }
 
 }

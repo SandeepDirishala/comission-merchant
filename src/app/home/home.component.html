@@ -7,21 +7,27 @@
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Village" [(ngModel)]="person.village" name="village">
       </mat-form-field>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="lot-input">
         <input matInput placeholder="Number of Lots" (change)="generateLots()" [(ngModel)]="person.lots" name="lots"
                type="number">
       </mat-form-field>
-      <span *ngFor="let bag of bags; let k=index">
-    <mat-form-field class="example-full-width">
-    <input matInput placeholder="Number of bags in lot {{k+1}}" [(ngModel)]="bagsList[k]" name="bags{{k+1}}"
-           type="number">
-  </mat-form-field>
-  </span>
+      <div *ngFor="let bag of bags; let k=index">
+        <mat-form-field class="lot-input">
+          <input matInput placeholder="Number of bags in lot {{k+1}}" [(ngModel)]="bagsList[k].size" name="bags{{k+1}}"
+                 type="number"></mat-form-field>
+        <mat-form-field class="lot-input">
 
-      <button mat-button (click)="createBagsArr()">Submit</button>
-      <button mat-button (click)="cal()">Cal</button>
+          <input matInput placeholder="Price of lot {{k+1}}" [(ngModel)]="bagsList[k].price" name="lotPrice{{k+1}}"
+                 type="number">
+        </mat-form-field>
+      </div>
 
-      <mat-card *ngFor="let lot of lotsOfBags; let j = index">
+      <div>
+        <button mat-button (click)="createBagsArr()">Submit</button>
+        <button mat-button (click)="cal()">Cal</button>
+      </div>
+
+      <mat-card class="bags-lot" *ngFor="let lot of lotsOfBags; let j = index">
         <p>Lot no. {{j + 1}}</p>
 
         <mat-card-content *ngFor="let bag of lot; let i = index">
@@ -34,6 +40,21 @@
 
 
     </form>
+
+    <table>
+      <tr>
+        <th>Bags</th>
+        <th>Weight</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      <tr *ngFor="let item of listOfLotPricing">
+        <td>{{item.bags}}</td>
+        <td>{{item.weight}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.total}}</td>
+      </tr>
+    </table>
 
   </mat-card-content>
 </mat-card>
