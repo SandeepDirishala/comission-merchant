@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
   public bagWieghts: any[] = [];
   public bagsList: any[] = [];
   public listOfLotPricing: any[] = [];
+  public percentage: any = 5;
+  public hamali: any = 10;
   displayedColumns: string[] = ['bags', 'weight', 'price', 'total'];
 
   constructor() {
@@ -52,6 +54,10 @@ export class HomeComponent implements OnInit {
       console.log(listofLotPrcingItem);
     });
     console.log(this.listOfLotPricing.map(a => a.total).reduce((a, b) => a + b));
+  }
+
+  addWeight(j, i, valueToBeAdded) {
+    this.bagWieghts[j][i] = Number(this.bagWieghts[j][i]) + valueToBeAdded;
   }
 
 }

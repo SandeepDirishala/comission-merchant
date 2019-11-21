@@ -21,7 +21,19 @@
                  type="number">
         </mat-form-field>
       </div>
+      <div>
 
+        <mat-form-field class="lot-input">
+
+          <input matInput placeholder="Percentage" [(ngModel)]="percentage" name="percentage"
+                 type="number">
+        </mat-form-field>
+        <mat-form-field class="lot-input">
+
+          <input matInput placeholder="Hamali" [(ngModel)]="hamali" name="hamali"
+                 type="number">
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button (click)="createBagsArr()">Submit</button>
         <button mat-button (click)="cal()">Cal</button>
@@ -35,6 +47,9 @@
             <input matInput placeholder="Weight of bag {{i+1}}" [(ngModel)]="bagWieghts[j][i]"
                    name="{{'bag'+j+1+''+i+1}}" type="number">
           </mat-form-field>
+          <button (click)="addWeight(j,i,0.25)">+.25</button>
+          <button (click)="addWeight(j,i,0.50)">+.50</button>
+          <button (click)="addWeight(j,i,0.75)">+.75</button>
         </mat-card-content>
       </mat-card>
 
