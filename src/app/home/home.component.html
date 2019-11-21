@@ -67,7 +67,27 @@
         <td>{{item.bags}}</td>
         <td>{{item.weight}}</td>
         <td>{{item.price}}</td>
-        <td>{{item.total}}</td>
+        <td>{{item.total | currency :'&#8377;':'symbol':'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td colspan="2"> {{totalBags}} - Bags</td>
+        <td>Total</td>
+        <td>{{totalSum | currency :'&#8377;':'symbol':'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">Intrest</td>
+        <td></td>
+        <td>{{intrestDeduction | currency :'&#8377;':'symbol':'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">Other charges</td>
+        <td></td>
+        <td>{{otherCharges | currency :'&#8377;':'symbol':'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td colspan="2">Final Amount</td>
+        <td></td>
+        <td>{{total| currency :'&#8377;':'symbol':'1.2-2'}}</td>
       </tr>
     </table>
 

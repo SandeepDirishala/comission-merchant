@@ -17,6 +17,11 @@ export class HomeComponent implements OnInit {
   public listOfLotPricing: any[] = [];
   public percentage: any = 5;
   public hamali: any = 10;
+  public totalSum: any;
+  public intrestDeduction: any;
+  public otherCharges: any;
+  public totalBags: any;
+  public total: any;
   displayedColumns: string[] = ['bags', 'weight', 'price', 'total'];
 
   constructor() {
@@ -42,6 +47,8 @@ export class HomeComponent implements OnInit {
   }
 
   cal() {
+    this.totalSum = 0;
+    this.totalBags = 0;
     this.bagWieghts.forEach((weights, i) => {
       const weightsSum = (weights.reduce((a, b) => a + b)) / 100;
       const listofLotPrcingItem = {
@@ -50,9 +57,15 @@ export class HomeComponent implements OnInit {
         price: this.bagsList[i].price,
         total: weightsSum * this.bagsList[i].price
       };
+      this.totalBags = this.totalBags + listofLotPrcingItem.bags
+      this.totalSum = this.totalSum + listofLotPrcingItem.total;
       this.listOfLotPricing.push(listofLotPrcingItem);
       console.log(listofLotPrcingItem);
     });
+    console.log(this.totalSum, this.totalBags);
+    this.intrestDeduction = this.totalSum * this.percentage / 100;
+    this.otherCharges = this.totalBags * this.hamali;
+    this.total = this.totalSum - this.intrestDeduction - this.otherCharges;
     console.log(this.listOfLotPricing.map(a => a.total).reduce((a, b) => a + b));
   }
 
